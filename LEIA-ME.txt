@@ -1,0 +1,38 @@
+Última Atualização:
+
+04/05/2018 - Atualização de Todas as dependências e bibliotecas de terceiros. Projeto .NET e Angular 100% atualizados.
+
+Angular 5 utilizando HttpClient (novo) e com ErrorHandler especializado.
+
+Metodo especializado para obter detalhes de evento apenas se o evento for do organizador.
+
+***
+
+01/02/2018 - Atualização de Todas as dependências e bibliotecas de terceiros. Projeto .NET e Angular 100% atualizados para o SDK 2.1.4
+
+Melhorias na implementação do MediatR 4.0
+
+***
+
+02/10/17 - Atualização de Todas as dependências e bibliotecas de terceiros. Projeto .NET e Angular 100% atualizados
+
+***
+
+Para rodar com Docker:
+
+Abra o terminal na pasta raíz (arquivo SLN) e execute:
+
+docker-compose -f docker-compose.prod.yml up --build --scale serverApi=4
+
+(Este comando cria as imagens e roda os conteineres, uma vez que as imagens foram criadas e não existe a necessidade de atualizar nenhuma modificação, basta rodar o comando sem o --build
+
+docker-compose -f docker-compose.prod.yml up --scale serverApi=4
+
+Para rodar em modo DEV basta mudar a extensão do arquivo YML para dev
+PS - É necessário criar os arquivos da pasta Node_Modules, para isto execute o NPM INSTALL na raiz da pasta CLIENT
+
+***
+
+Resolução de problemas:
+
+Leia o arquivo troubleshooting.txt

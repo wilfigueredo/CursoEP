@@ -1,0 +1,202 @@
+<app-menu-superior></app-menu-superior>
+<div class="container main-container">
+  <h2>Novo Evento</h2>
+  <h4>Preencha corretamente os dados</h4>
+  <hr />
+
+  <form novalidate (ngSubmit)="adicionarEvento()" [formGroup]="eventoForm">
+
+    <div class="form-horizontal">
+
+      <div class="alert alert-danger" *ngIf="errors.length > 0">
+        <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+        <ul>
+          <li *ngFor="let error of errors">{{ error }}</li>
+        </ul>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': displayMessage.nome }">
+        <label class="col-md-2 control-label" for="nome">Nome do Evento</label>
+        <div class="col-md-10">
+          <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" />
+          <span class="text-danger" *ngIf="displayMessage.nome">
+              <p [innerHTML]="displayMessage.nome"></p>
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Descrição Curta</label>
+        <div class="col-md-10">
+          <input class="form-control" id="descricaoCurta" type="text" placeholder="Descrição Curta" formControlName="descricaoCurta" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Mais detalhes</label>
+        <div class="col-md-10">
+          <textarea class="form-control" id="descricaoLonga" cols="40" rows="5" placeholder="Descrição Longa" formControlName="descricaoLonga"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': displayMessage.categoriaId }">
+        <label class="col-md-2 control-label">Categoria</label>
+        <div class="col-md-10">
+          <select class="form-control" formControlName="categoriaId" id="categoriaId">
+          <option *ngFor="let categoria of categorias" value="{{categoria.id}}" >{{ categoria.nome }}</option>
+       </select>
+          <span class="text-danger" *ngIf="displayMessage.categoriaId">
+              <p [innerHTML]="displayMessage.categoriaId"></p>
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': displayMessage.dataInicio }">
+        <label class="col-md-2 control-label">Data de Início</label>
+        <div class="col-md-10">
+          <my-date-picker id="dataInicio" name="dataInicio" [options]="myDatePickerOptions" formControlName="dataInicio"></my-date-picker>
+          <span class="text-danger" *ngIf="displayMessage.dataInicio">
+              <p [innerHTML]="displayMessage.dataInicio"></p>
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': displayMessage.dataFim }">
+        <label class="col-md-2 control-label">Data de Encerramento</label>
+        <div class="col-md-10">
+          <my-date-picker id="dataFim" name="dataFim" [options]="myDatePickerOptions" formControlName="dataFim"></my-date-picker>
+          <span class="text-danger" *ngIf="displayMessage.dataFim">
+              <p [innerHTML]="displayMessage.dataFim"></p>
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': displayMessage.gratuito }">
+        <div class="col-md-offset-2 col-md-10">
+          <div class="checkbox">
+            <input type="checkbox" name="gratuito" id="gratuito" [(ngModel)]="gratuito" formControlName="gratuito">
+            <label for="gratuito">Será gratuito?</label>
+            <span class="text-danger" *ngIf="displayMessage.gratuito">
+              <p [innerHTML]="displayMessage.gratuito"></p>
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="!gratuito">
+        <label class="col-md-2 control-label">Valor</label>
+        <div class="col-md-10">
+          <input class="form-control" id="valor" value="0" type="text" placeholder="Valor R$" formControlName="valor" />
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': displayMessage.online }">
+        <div class="col-md-offset-2 col-md-10">
+          <div class="checkbox">
+            <input type="checkbox" name="online" [(ngModel)]="online" id="online" formControlName="online">
+            <label for="online">Será online?</label>
+            <span class="text-danger" *ngIf="displayMessage.online">
+              <p [innerHTML]="displayMessage.online"></p>
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Empresa / Organização</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" id="nomeEmpresa" placeholder="Empresa / Organização" formControlName="nomeEmpresa" />
+        </div>
+      </div>
+      <div id="EnderecoPartial" *ngIf="!online">
+        <hr>
+        <h3>Endereço</h3>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Logradouro</label>
+          <div class="col-md-10">
+            <input class="form-control" id="logradouro" type="text" placeholder="Logradouro" formControlName="logradouro" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Número</label>
+          <div class="col-md-10">
+            <input class="form-control" id="numero" type="text" placeholder="Numero" formControlName="numero" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Complemento</label>
+          <div class="col-md-10">
+            <input class="form-control" id="complemento" type="text" placeholder="Complemento" formControlName="complemento" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Bairro</label>
+          <div class="col-md-10">
+            <input class="form-control" id="bairro" type="text" placeholder="Bairro" formControlName="bairro" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">CEP</label>
+          <div class="col-md-10">
+            <input class="form-control" id="cep" type="text" placeholder="CEP" formControlName="cep" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Cidade</label>
+          <div class="col-md-10">
+            <input class="form-control" id="cidade" type="text" placeholder="Cidade" formControlName="cidade" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Estado</label>
+          <div class="col-md-10">
+            <select class="form-control" id="estado" formControlName="estado">
+              <option value="">Estado</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2">
+          <span><button class="btn btn-primary" id="adicionarEvento" type="submit" [disabled]='!eventoForm.valid'>Adicionar</button></span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

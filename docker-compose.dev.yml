@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  client:
+    image: curso.client:dev
+    build: 
+     context: ./client
+     dockerfile: Dockerfile.dev
+    volumes:
+    - ./client:/app
+
+  serverApi:
+    image: curso.api:dev
+    build: 
+      context: ./server
+      dockerfile: Dockerfile.dev
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  nginx:
+    image: curso.proxy:dev
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - "80:80"
+      - "8287:8286"
+    links:
+      - client
+      - serverApi

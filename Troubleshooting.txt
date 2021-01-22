@@ -1,0 +1,28 @@
+Problemas em atualizar o Projeto em Angular:
+
+1-) Exclua o package-lock.json
+2-) Exclua a pasta node_modules
+3-) Execute o comando:
+npm install
+4-) Execute o comando:
+ng b --prod
+
+Esse processo costuma resolver a maioria dos problemas, caso persista procure atualizar o ambiente.
+
+1-) Atualize a versão do Node em sua máquina
+
+2-)Rode na raíz do projeto client:
+ npm install -g npm-check-updates
+ ncu -a
+
+Execute o processo acima novamente.
+
+**************************
+
+Problemas em rodar com Docker:
+
+Após atualizar a versão do SDK é necessário remover os conteineres e as imagens e executar o comando docker-compose novamente, pois ele irá baixar as novas imagens.
+
+Verifique se a porta 80 não está sendo utilizada pelo IIS ou Skype
+
+

@@ -1,0 +1,61 @@
+<app-menu-superior></app-menu-superior>
+<div class="container main-container">
+  <h2>Meus Eventos</h2>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="pull-left">
+        <a class="btn btn-primary" id="novoEvento" [routerLink]="['/eventos/novo']">
+          <span title="Novo Evento" class="glyphicon glyphicon-plus-sign"></span> Novo Evento
+        </a>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class='text-danger' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+  <div class="page-size">
+    <div class="panel panel-default">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data de Início</th>
+            <th>Data de Encerramento</th>
+            <th>Valor</th>
+            <th>Online</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let evento of eventos'>
+            <td><b>{{ evento.nome | titlecase }}</b></td>
+            <td>{{ evento.dataInicio | date:'dd/MM/yyyy' }}</td>
+            <td>{{ evento.dataFim | date:'dd/MM/yyyy' }}</td>
+            
+            <td *ngIf='evento.valor == 0'>Gratuito</td>
+            <td *ngIf='evento.valor != 0'>{{ evento.valor | currency:'BRL':symbol:'1.2-2':'pt' }}</td>
+
+            <td [ngSwitch]="evento.online">
+              <span *ngSwitchCase="true" class="glyphicon glyphicon-ok"></span>
+              <span *ngSwitchCase="false" class="glyphicon glyphicon-unchecked"></span>
+            </td>
+
+            <td>
+              <a [routerLink]="['/eventos/detalhes', evento.id]"  title="Detalhes" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span>
+              </a>
+              <a [routerLink]="['/eventos/editar', evento.id]"  title="Editar" class="btn btn-warning">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+              <a [routerLink]="['/eventos/excluir', evento.id]"  title="Excluir" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
+            </td>
+          </tr>          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

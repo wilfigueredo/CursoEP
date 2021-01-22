@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="elmah.io.client" Version="3.2.52" />
+    <PackageReference Include="microsoft.aspnetcore.hosting.abstractions" Version="2.0.2" />
+    <PackageReference Include="microsoft.aspnetcore.http.abstractions" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.2" />
+    <PackageReference Include="microsoft.aspnetcore.mvc.abstractions" Version="2.0.3" />
+    <PackageReference Include="microsoft.aspnetcore.mvc.viewfeatures" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.11" />
+    <PackageReference Include="newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+</Project>

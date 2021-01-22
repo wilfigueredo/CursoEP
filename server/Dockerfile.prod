@@ -1,0 +1,14 @@
+### Estágio 1 - Obter o source e gerar o Build ###
+FROM microsoft/aspnetcore-build:2.0 AS dotnet-builder
+WORKDIR /app
+COPY . /app
+RUN dotnet restore src/Eventos.IO.Services.Api/Eventos.IO.Services.Api.csproj
+RUN dotnet publish src/Eventos.IO.Services.Api/Eventos.IO.Services.Api.csproj -c Release -o /app/publish 
+
+### Estágio 2 - Subir a aplicação através dos binários ###
+FROM microsoft/aspnetcore:2.0
+WORKDIR /app
+ENV ASPNETCORE_URLS http://*:8286
+EXPOSE 8286
+COPY --from=dotnet-builder /app/publish .
+ENTRYPOINT ["dotnet", "Eventos.IO.Services.Api.dll"]

@@ -1,0 +1,40 @@
+{
+  "name": "eventos.io",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve -H 0.0.0.0",
+    "build": "ng build"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^5.2.9",
+    "@angular/common": "^5.2.9",
+    "@angular/compiler": "^5.2.9",
+    "@angular/core": "^5.2.9",
+    "@angular/forms": "^5.2.9",
+    "@angular/http": "^5.2.9",
+    "@angular/platform-browser": "^5.2.9",
+    "@angular/platform-browser-dynamic": "^5.2.9",
+    "@angular/router": "^5.2.9",
+    "angular2-uuid": "^1.1.1",
+    "core-js": "^2.5.5",
+    "mydatepicker": "^2.6.3",
+    "ng2-toastr": "^4.1.2",
+    "ng2-validation": "^4.2.0",
+    "ngx-bootstrap": "^2.0.4",
+    "rxjs": "^5.5.8",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.7.4",
+    "@angular/compiler-cli": "^5.2.9",
+    "@types/jasmine": "2.8.6",
+    "@types/node": "~10.0.3",
+    "codelyzer": "~4.3.0",
+    "ts-node": "~6.0.2",
+    "tslint": "~5.9.1",
+    "typescript": "~2.8.1"
+  }
+}

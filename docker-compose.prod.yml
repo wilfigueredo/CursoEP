@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  serverApi:
+    image: curso.api:prod
+    build: 
+      context: ./server
+      dockerfile: Dockerfile.prod
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  client:
+    image: curso.client:prod
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+      - "8287:8286"
+    links:
+      - serverApi
